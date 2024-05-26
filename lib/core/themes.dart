@@ -20,8 +20,8 @@ import 'package:flutter/material.dart';
   
   fontFamily: 'Montserrat',
   textTheme:const TextTheme(
-    headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-    headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-    bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+    bodyMedium: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+    headlineLarge: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+    headlineMedium: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
   ),
 );
