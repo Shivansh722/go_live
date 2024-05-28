@@ -10,7 +10,7 @@ class SplashScreen extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 20, 24, 22),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Image.asset('assets/logo.png', width: 250, height: 250),
+          Image.asset('assets/logo2.png', width: 250, height: 250),
           const SizedBox(height: 20),
           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -29,21 +29,43 @@ class SplashScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 50),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AuthScreen()));
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 31, 218, 147),
-              foregroundColor: Colors.black,
-              padding: const EdgeInsets.fromLTRB(65, 27, 65, 27),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(40),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: 70,
+                width: 240,
+                decoration: BoxDecoration(
+                  color: Colors.yellow,
+                  borderRadius: BorderRadius.circular(40),
+                ),
               ),
-            ),
-            child: const Text('Get Started',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Positioned(
+                bottom: 5,
+                left: 0,
+                right: 0,
+                top: 0,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AuthScreen()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 31, 218, 147),
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.fromLTRB(65, 27, 65, 27),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                  ),
+                  child: const Text('Get Started',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                ),
+              ),
+            ],
           ),
         ]),
       ),
