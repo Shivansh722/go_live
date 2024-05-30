@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:srm_live/core/themes.dart';
+import 'package:srm_live/src/presentation/screens/home.dart';
 import 'package:srm_live/src/presentation/screens/splash.dart';
 // Ensure this path is correct
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'My App',
       theme: lightMode, // Apply the lightMode theme
-      home: const SplashScreen(),
+      home: const HomePage(),
     );
   }
 }
