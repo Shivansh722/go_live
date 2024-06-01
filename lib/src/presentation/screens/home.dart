@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:srm_live/src/presentation/widgets/drawer.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:srm_live/src/presentation/screens/notification.dart';
-import 'package:srm_live/src/presentation/widgets/tiles/rec_tile.dart';
-import 'package:srm_live/src/presentation/widgets/tiles/squar_tile.dart';
-// Import SquareTile
+import 'package:srm_live/src/presentation/widgets/tiles/radio_home.dart';
+import 'package:srm_live/src/presentation/widgets/tiles/rec_tile_home.dart';
+import 'package:srm_live/src/presentation/widgets/tiles/squar_tile_home.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
-        leading: IconButton(
-          icon: Icon(Icons.menu, color: Theme.of(context).colorScheme.secondaryContainer),
-          onPressed: () {
-            // Implement drawer opening logic here
-          },
-        ),
         actions: [
           IconButton(
             icon: Icon(Icons.notifications_outlined, color: Theme.of(context).colorScheme.secondaryContainer),
@@ -30,18 +26,18 @@ class HomePage extends StatelessWidget {
           ),
           IconButton(
             icon: Container(
-              width: 40, // Adjust the size as needed
-              height: 40, // Adjust the size as needed
+              width: 40,
+              height: 40,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.onTertiary, // Replace with your desired border color
-                  width: 2.0, // Adjust the border width as needed
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  width: 2.0,
                 ),
               ),
               child: const CircleAvatar(
-                backgroundImage: AssetImage('assets/user1.jpg'), // Replace with the actual profile image URL
-                radius: 18, // Adjust the radius to fit inside the border
+                backgroundImage: AssetImage('assets/user1.jpg'),
+                radius: 18,
               ),
             ),
             onPressed: () {
@@ -49,6 +45,23 @@ class HomePage extends StatelessWidget {
             },
           ),
         ],
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.secondaryContainer),
+      ),
+      drawer: const MyDrawer(),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Theme.of(context).colorScheme.background,//between color
+        color: Theme.of(context).colorScheme.onBackground,
+        buttonBackgroundColor: Theme.of(context).colorScheme.onTertiary,
+        height: 50,
+        items: const [
+          Icon(Icons.home_outlined, size: 30),
+          Icon(Icons.radio_button_checked, size: 30),
+          Icon(Icons.event, size: 30),
+          Icon(Icons.settings, size: 30),
+        ],
+        onTap: (index) {
+          // Implement navigation to the respective screens here
+        },
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -56,9 +69,8 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               Text(
-                'Events', // Replace with the actual user name
+                'Events',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 28,
@@ -66,9 +78,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              // Horizontal Swipable Tiles
               SizedBox(
-                height: 150, // Adjust the height as needed
+                height: 150,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children:  [
@@ -76,25 +87,21 @@ class HomePage extends StatelessWidget {
                     SquareTile(title: 'Tile 2', icon: Icons.star, color: Theme.of(context).colorScheme.onSecondary),
                     SquareTile(title: 'Tile 3', icon: Icons.favorite, color: Theme.of(context).colorScheme.surface),
                     SquareTile(title: 'Tile 4', icon: Icons.person, color: Colors.orange),
-                    // Add more tiles as needed
                   ],
                 ),
               ),
-             const SizedBox(height: 40),
-
-             Row(
-               children: [
-                 Text(
+              const SizedBox(height: 40),
+              Row(
+                children: [
+                  Text(
                     'Registered Spaces',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.primary,
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                     ),
-                 ),
-
-                  const Spacer(),
-
+                  ),
+                  Spacer(),
                   TextButton(
                     onPressed: () {
                       // Implement view all logic here
@@ -107,14 +114,12 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-               ],
-             ),
-
-             const SizedBox(height: 20),
-              // Rectangular Tiles Below
-                RectTile(title: 'Rectangle 1', icon: Icons.info, color: Theme.of(context).colorScheme.tertiary), 
-              
-              // Add more rectangles as needed
+                ],
+              ),
+              const SizedBox(height: 20),
+              RectTile(title: 'Rectangle 1', icon: Icons.info, color: Theme.of(context).colorScheme.tertiary),
+              const SizedBox(height: 20),
+              RadioTile(),
             ],
           ),
         ),
@@ -122,4 +127,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-

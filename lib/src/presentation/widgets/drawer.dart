@@ -15,6 +15,9 @@ class MyDrawer extends StatelessWidget {
           children: [
             const SizedBox(height: 50),
             UserAccountsDrawerHeader(
+             decoration: BoxDecoration(
+               color: Theme.of(context).colorScheme.onTertiary,
+              ),
               accountName: Text(accountName),
               currentAccountPicture: const CircleAvatar(
                 backgroundImage: AssetImage('assets/user1.jpg'),
@@ -24,7 +27,7 @@ class MyDrawer extends StatelessWidget {
                 style: const TextStyle(fontSize: 8, color: Colors.black),
               ),
             ),
-            const Divider(color: Colors.black),
+           
             ListTile(
               leading: const Icon(Icons.home),
               title: const Text('Home'),
