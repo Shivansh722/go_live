@@ -1,3 +1,6 @@
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:srm_live/src/presentation/widgets/drawer.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -5,9 +8,28 @@ import 'package:srm_live/src/presentation/screens/notification.dart';
 import 'package:srm_live/src/presentation/widgets/tiles/radio_home.dart';
 import 'package:srm_live/src/presentation/widgets/tiles/rec_tile_home.dart';
 import 'package:srm_live/src/presentation/widgets/tiles/squar_tile_home.dart';
+import 'package:srm_live/src/presentation/widgets/shimmer_shapes/shimmer_rectangle.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 5), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +40,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.notifications_outlined, color: Theme.of(context).colorScheme.secondaryContainer),
             onPressed: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const NotificationPage()),
               );
@@ -49,8 +71,8 @@ class HomePage extends StatelessWidget {
       ),
       drawer: const MyDrawer(),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.background,//between color
-        color: Theme.of(context).colorScheme.onBackground,
+        backgroundColor: Colors.transparent,//between color
+        color: Theme.of(context).colorScheme.tertiary,
         buttonBackgroundColor: Theme.of(context).colorScheme.onTertiary,
         height: 50,
         items: const [
@@ -80,15 +102,52 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 20),
               SizedBox(
                 height: 150,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children:  [
-                    SquareTile(title: 'Tile 1', icon: Icons.home, color: Theme.of(context).colorScheme.secondary),
-                    SquareTile(title: 'Tile 2', icon: Icons.star, color: Theme.of(context).colorScheme.onSecondary),
-                    SquareTile(title: 'Tile 3', icon: Icons.favorite, color: Theme.of(context).colorScheme.surface),
-                    SquareTile(title: 'Tile 4', icon: Icons.person, color: Colors.orange),
-                  ],
-                ),
+                child: _isLoading
+                  ? ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        ShimmerRectangle(
+                          width: 160,
+                          height: 100,
+                          baseColor: Theme.of(context).colorScheme.background,
+                          highlightColor: Colors.grey[900]!,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        const SizedBox(width: 10),
+                        ShimmerRectangle(
+                          width: 160,
+                          height: 100,
+                          baseColor: Theme.of(context).colorScheme.background,
+                          highlightColor: Colors.grey[900]!,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        const SizedBox(width: 10),
+                        ShimmerRectangle(
+                          width: 160,
+                          height: 100,
+                          baseColor: Theme.of(context).colorScheme.background,
+                          highlightColor: Colors.grey[900]!,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        const SizedBox(width: 10),
+                        ShimmerRectangle(
+                          width: 160,
+                          height: 100,
+                          baseColor: Theme.of(context).colorScheme.background,
+                          highlightColor: Colors.grey[900]!,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ],
+                    )
+                  : ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        SquareTile(title: 'Tile 1', icon: Icons.home, color: Theme.of(context).colorScheme.secondary),
+                        SquareTile(title: 'Tile 2', icon: Icons.star, color: Theme.of(context).colorScheme.onSecondary),
+                        SquareTile(title: 'Tile 3', icon: Icons.favorite, color: Theme.of(context).colorScheme.surface),
+                        SquareTile(title: 'Tile 4', icon: Icons.person, color: Colors.orange),
+                      ],
+                    ),
               ),
               const SizedBox(height: 40),
               Row(
@@ -101,7 +160,7 @@ class HomePage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   TextButton(
                     onPressed: () {
                       // Implement view all logic here
@@ -117,9 +176,10 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              RectTile(title: 'Rectangle 1', icon: Icons.info, color: Theme.of(context).colorScheme.tertiary),
+              _isLoading ? ShimmerRectangle(width: double.infinity, height: 160, baseColor: Theme.of(context).colorScheme.background, highlightColor: Colors.grey[900]!, borderRadius: BorderRadius.circular(10)):
+                RectTile(title: 'Rectangle 1', icon: Icons.info, color: const Color.fromARGB(255, 110,163,240)),
               const SizedBox(height: 20),
-              RadioTile(),
+              _isLoading ? ShimmerRectangle(width: double.infinity, height: 80, baseColor: Theme.of(context).colorScheme.background, highlightColor: Colors.grey[900]!, borderRadius: BorderRadius.circular(10)): RadioTile(),
             ],
           ),
         ),

@@ -6,59 +6,59 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DateTime currentDateTime = DateTime.now();
-    final String accountName = 'User Name'; // You can replace this with a dynamic value.
+    const String accountName = 'User Name'; // You can replace this with a dynamic value.
 
     return Drawer(
-      backgroundColor: Theme.of(context).colorScheme.onTertiary,
+      backgroundColor: Theme.of(context).colorScheme.background,
       child: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(height: 50),
             UserAccountsDrawerHeader(
              decoration: BoxDecoration(
-               color: Theme.of(context).colorScheme.onTertiary,
+               color: Theme.of(context).colorScheme.background,
               ),
-              accountName: Text(accountName),
+              accountName: Text(accountName, style: TextStyle(color: Colors.grey)),
               currentAccountPicture: const CircleAvatar(
                 backgroundImage: AssetImage('assets/user1.jpg'),
               ),
               accountEmail: Text(
                 '${currentDateTime.day}/${currentDateTime.month}/${currentDateTime.year}\n${currentDateTime.hour}:${currentDateTime.minute}',
-                style: const TextStyle(fontSize: 8, color: Colors.black),
+                style: const TextStyle(fontSize: 8, color: Colors.grey),
               ),
             ),
            
             ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Home'),
+              leading: Icon(Icons.home, color: Theme.of(context).colorScheme.onTertiary),
+              title: const Text('Home', style: TextStyle(color: Colors.grey)),
               onTap: () {
                 // Implement navigation to the home screen here
               },
             ),
             ListTile(
-              leading: const Icon(Icons.radio),
-              title: const Text('Radio'),
+              leading: Icon(Icons.radio, color: Theme.of(context).colorScheme.onTertiary),
+              title: const Text('Radio', style: TextStyle(color: Colors.grey)),
               onTap: () {
                 // Implement navigation to the radio screen here
               },
             ),
             ListTile(
-              leading: const Icon(Icons.event),
-              title: const Text('Events'),
+              leading: Icon(Icons.event, color: Theme.of(context).colorScheme.onTertiary),
+              title: const Text('Events', style: TextStyle(color: Colors.grey)),
               onTap: () {
                 // Implement navigation to the events screen here
               },
             ),
             ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
+              leading: Icon(Icons.settings, color: Theme.of(context).colorScheme.onTertiary),
+              title: const Text('Settings', style: TextStyle(color: Colors.grey)),
               onTap: () {
                 // Implement navigation to the settings screen here
               },
             ),
             ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text('Logout'),
+              leading: Icon(Icons.logout, color: Theme.of(context).colorScheme.onTertiary),
+              title: const Text('Logout', style: TextStyle(color: Colors.grey)),
               onTap: () {
                 // Implement logout functionality here
               },
