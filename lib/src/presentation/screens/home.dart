@@ -2,9 +2,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:srm_live/src/presentation/widgets/drawer.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:srm_live/src/presentation/screens/notification.dart';
+import 'package:srm_live/src/presentation/widgets/new_drawer.dart';
 import 'package:srm_live/src/presentation/widgets/tiles/radio_home.dart';
 import 'package:srm_live/src/presentation/widgets/tiles/rec_tile_home.dart';
 import 'package:srm_live/src/presentation/widgets/tiles/squar_tile_home.dart';
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
         ],
         iconTheme: IconThemeData(color: Theme.of(context).colorScheme.secondaryContainer),
       ),
-      drawer: const MyDrawer(),
+      drawer: const SideBar(),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,//between color
         color: Theme.of(context).colorScheme.tertiary,
